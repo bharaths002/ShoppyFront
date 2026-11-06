@@ -1,0 +1,164 @@
+.auth-page {
+  display: flex;
+  justify-content: center;
+  padding: 60px 5%;
+  background: #f8f5f0;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 32px;
+  align-self: flex-start;
+}
+
+.auth-card h2 {
+  margin: 0 0 8px;
+  font-size: 26px;
+}
+
+.auth-sub {
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.auth-tabs button {
+  flex: 1;
+  padding: 10px;
+  background: #f3f4f6;
+  color: #6b7280;
+  border: none;
+  border-radius: 8px;
+}
+
+.auth-tabs button.active {
+  background: #1f2937;
+  color: white;
+}
+
+.field {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 11px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 400;
+}
+
+.field input[readonly] {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid #e76f51;
+  outline-offset: 1px;
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  background: #1f2937;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  text-align: center;
+}
+
+.form-error {
+  background: #fef2f2;
+  color: #b91c1c;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  margin: 0 0 16px;
+}
+
+.form-info {
+  background: #f0fdf4;
+  color: #166534;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  margin: 0 0 16px;
+}
+
+.auth-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+/* login: secondary button, "or" divider, forgot password link */
+.btn-secondary {
+  display: block;
+  width: 100%;
+  background: white;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 12px 20px;
+  text-align: center;
+}
+
+.btn-secondary:hover {
+  background: #f9fafb;
+}
+
+.or-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #9ca3af;
+  font-size: 13px;
+  margin: 14px 0;
+}
+
+.or-divider::before,
+.or-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.auth-footer {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.forgot-link {
+  color: #2563eb;
+}
+
+.forgot-link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
