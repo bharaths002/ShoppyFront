@@ -1,10 +1,12 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { useCart } from '../context/CartContext'
+import { getInitial } from '../utils/format'
 import './Navbar.css'
 
-// cartCount is wired up in the cart module
-export default function Navbar({ cartCount = 0 }) {
-  const { isLoggedIn, isVendorApproved, logout } = useAuth()
+export default function Navbar() {
+  const { user, isLoggedIn, isVendorApproved, logout } = useAuth()
+  const { count } = useCart()
   const navigate = useNavigate()
 
   async function handleLogout() {
@@ -29,17 +31,21 @@ export default function Navbar({ cartCount = 0 }) {
       <div className="nav-actions">
         {isLoggedIn ? (
           <>
-            <Link to="/profile">Profile</Link>
             {isVendorApproved && <Link to="/vendor">Vendor dashboard</Link>}
             <button className="link-button" onClick={handleLogout}>
               Logout
             </button>
+            <Link to="/profile" className="avatar" title="My profile" aria-label="My profile">
+              {getInitial(user)}
+            </Link>
           </>
         ) : (
           <Link to="/login">Login</Link>
         )}
 
-        <button className="cart-button">Cart ({cartCount})</button>
+        <Link to="/cart" className="cart-button">
+          Cart ({count})
+        </Link>
       </div>
     </header>
   )

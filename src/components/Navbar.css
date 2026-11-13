@@ -43,6 +43,29 @@
   color: #1f2937;
 }
 
+/* the cart button and the avatar are links, so they must keep their own text colour */
+.nav-actions .cart-button,
+.nav-actions .cart-button:hover,
+.nav-actions .avatar,
+.nav-actions .avatar:hover {
+  color: white;
+}
+
+/* circle with the user's initial (also used on the profile page) */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e76f51;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+}
+
 @media (max-width: 600px) {
   .navbar {
     padding: 16px 5%;

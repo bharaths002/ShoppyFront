@@ -1,0 +1,274 @@
+/* Profile pages. Form fields and buttons (.field, .btn-primary, .btn-secondary, .form-error,
+   .form-info) come from Auth.css, which App.jsx already loads. */
+
+.profile-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 5% 60px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.profile-header h1 {
+  margin: 0 0 4px;
+  font-size: 26px;
+}
+
+.profile-header p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.avatar.avatar-lg {
+  width: 64px;
+  height: 64px;
+  font-size: 26px;
+}
+
+.profile-tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 28px;
+  overflow-x: auto;
+}
+
+.profile-tabs a {
+  padding: 10px 2px;
+  margin-bottom: -1px;
+  color: #6b7280;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.profile-tabs a.active {
+  color: #1f2937;
+  font-weight: 700;
+  border-bottom-color: #e76f51;
+}
+
+.panel {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.panel h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+}
+
+.panel-sub {
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 22px;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+
+.span-2 {
+  grid-column: 1 / -1;
+}
+
+.narrow-form {
+  max-width: 380px;
+}
+
+.check-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.profile-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.profile-actions .btn-primary,
+.profile-actions .btn-secondary,
+.add-button {
+  width: auto;
+  padding: 11px 22px;
+}
+
+/* addresses */
+.address-list {
+  display: grid;
+  gap: 16px;
+}
+
+.address-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.address-card p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #374151;
+}
+
+.address-card .address-phone {
+  color: #6b7280;
+}
+
+.address-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.pills {
+  display: flex;
+  gap: 6px;
+}
+
+.pill {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.pill.default {
+  background: #fff0e9;
+  color: #c65335;
+}
+
+.address-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.btn-small {
+  display: inline-block;
+  background: white;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.btn-small:hover {
+  background: #f9fafb;
+}
+
+.btn-small.danger {
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.inline-form {
+  border: 1px solid #e5e7eb;
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.inline-form h3 {
+  margin: 0 0 16px;
+  font-size: 16px;
+}
+
+/* seller tab */
+.status-card {
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 12px 0 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.status-card p {
+  margin: 4px 0 12px;
+}
+
+.status-card.pending {
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.status-card.approved {
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.status-card.rejected {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.status-card.suspended {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.detail-list {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 8px 16px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.detail-list dt {
+  color: #6b7280;
+}
+
+.detail-list dd {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .panel {
+    padding: 20px;
+  }
+
+  .panel-head {
+    flex-direction: column;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-list {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .detail-list dd {
+    margin-bottom: 10px;
+  }
+}

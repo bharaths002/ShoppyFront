@@ -206,3 +206,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+.card-error {
+  color: #b91c1c;
+  font-size: 12px;
+  margin: 8px 0 0;
+}

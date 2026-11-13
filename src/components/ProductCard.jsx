@@ -1,13 +1,49 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useCart } from '../context/CartContext'
 import { formatPrice } from '../utils/format'
 
 const PLACEHOLDER = 'https://placehold.co/300x220?text=No+Image'
 
-// onAddToCart is wired up in the cart module
-export default function ProductCard({ product, onAddToCart }) {
+export default function ProductCard({ product }) {
+  const { addItem } = useCart()
+  const navigate = useNavigate()
+  const [state, setState] = useState('idle') // idle | adding | added
+  const [error, setError] = useState('')
+
   const hasDiscount = Number(product.discount_percent) > 0
   const detailPath = `/products/${product.slug}`
   const label = [product.category?.name, product.brand?.name].filter(Boolean).join(' · ')
+  const needsOptions = Boolean(product.has_variants)
+
+  async function handleAdd() {
+    if (needsOptions) {
+      navigate(detailPath) // variants must be chosen on the detail page
+      return
+    }
+
+    setState('adding')
+    setError('')
+    try {
+      await addItem({ productId: product.id, quantity: 1 })
+      setState('added')
+      setTimeout(() => setState('idle'), 1500)
+    } catch (err) {
+      setState('idle')
+      // the list response may not say whether a product has variants: fall back to the detail page
+      if (err.data?.variant_id) {
+        navigate(detailPath)
+        return
+      }
+      setError(err.message)
+    }
+  }
+
+  let buttonText = 'Add to cart'
+  if (!product.is_in_stock) buttonText = 'Out of stock'
+  else if (needsOptions) buttonText = 'Select options'
+  else if (state === 'adding') buttonText = 'Adding...'
+  else if (state === 'added') buttonText = 'Added ✓'
 
   return (
     <article className="product-card">
@@ -29,10 +65,12 @@ export default function ProductCard({ product, onAddToCart }) {
             {hasDiscount && <span className="old-price">{formatPrice(product.price)}</span>}
           </p>
 
-          <button onClick={() => onAddToCart?.(product)} disabled={!product.is_in_stock}>
-            {product.is_in_stock ? 'Add to cart' : 'Out of stock'}
+          <button onClick={handleAdd} disabled={!product.is_in_stock || state === 'adding'}>
+            {buttonText}
           </button>
         </div>
+
+        {error && <p className="card-error">{error}</p>}
       </div>
     </article>
   )

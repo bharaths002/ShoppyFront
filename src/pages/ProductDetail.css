@@ -1,0 +1,180 @@
+/* Uses .btn-primary, .form-error, .form-info (Auth.css), .qty-stepper (Cart.css), .badge / .old-price (Home.css). */
+
+.detail-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 5% 60px;
+}
+
+.breadcrumb {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 0 0 20px;
+}
+
+.breadcrumb a:hover {
+  color: #1f2937;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.gallery-main {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f3f4f6;
+  display: block;
+}
+
+.gallery-thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.gallery-thumbs button {
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  background: none;
+}
+
+.gallery-thumbs button.active {
+  border-color: #e76f51;
+}
+
+.gallery-thumbs img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.detail-info h1 {
+  margin: 6px 0 8px;
+  font-size: 28px;
+  line-height: 1.25;
+}
+
+.detail-info .seller {
+  margin: 0 0 16px;
+}
+
+.detail-price {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 20px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.old-price.inline {
+  display: inline;
+  font-size: 16px;
+}
+
+.badge.static {
+  position: static;
+  font-size: 12px;
+}
+
+.variant-block {
+  margin-bottom: 18px;
+}
+
+.variant-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.variant-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.variant-chip {
+  background: white;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 14px;
+}
+
+.variant-chip:hover:not(:disabled) {
+  border-color: #1f2937;
+}
+
+.variant-chip.selected {
+  border-color: #e76f51;
+  background: #fff0e9;
+  color: #c65335;
+  font-weight: 700;
+}
+
+.variant-chip small {
+  color: #9ca3af;
+}
+
+.stock-text {
+  font-size: 14px;
+  color: #b45309;
+  margin: 0 0 16px;
+}
+
+.stock-text.ok {
+  color: #166534;
+}
+
+.buy-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.buy-row .add-to-cart {
+  width: auto;
+  flex: 1;
+  max-width: 260px;
+}
+
+.description {
+  margin-top: 28px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 20px;
+}
+
+.description h2 {
+  font-size: 17px;
+  margin: 0 0 10px;
+}
+
+.description p {
+  color: #4b5563;
+  line-height: 1.7;
+  white-space: pre-line;
+  margin: 0;
+}
+
+@media (max-width: 800px) {
+  .detail-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
