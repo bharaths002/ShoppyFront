@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
-import { api } from '../../api/client'
+import { api, tokenStore } from '../../api/client'
 
 export default function PasswordTab() {
   const { me, setMe } = useOutletContext()
@@ -26,20 +26,30 @@ export default function PasswordTab() {
       setError('Passwords do not match.')
       return
     }
+    if (hasPassword && password === current) {
+      setError('Your new password must be different from the current one.')
+      return
+    }
 
     setSaving(true)
     try {
       const body = { password, confirm_password: confirm }
-      // Sent for accounts that already have a password. The backend starts checking it
-      // once the SetPasswordView change is made; until then it is ignored.
-      if (hasPassword) body.current_password = current
+      if (hasPassword) body.current_password = current // accounts that already have a password must prove they know it
 
-      await api.post('/api/accounts/set-password/', body)
+      const res = await api.post('/api/accounts/set-password/', body)
+
+      // the server signs out every older login and returns a fresh pair for this browser
+      if (res?.access && res?.refresh) tokenStore.setTokens(res.access, res.refresh)
+
       setMe({ ...me, has_password: true })
       setCurrent('')
       setPassword('')
       setConfirm('')
-      setMessage(hasPassword ? 'Password changed.' : 'Password set. You can now log in with your email and password.')
+      setMessage(
+        hasPassword
+          ? 'Password changed. Your other devices have been signed out.'
+          : 'Password set. You can now log in with your email and password.',
+      )
     } catch (err) {
       setError(err.message)
     } finally {
@@ -52,7 +62,7 @@ export default function PasswordTab() {
       <h2>{hasPassword ? 'Change password' : 'Set a password'}</h2>
       <p className="panel-sub">
         {hasPassword
-          ? 'Use at least 8 characters.'
+          ? 'Enter your current password, then choose a new one of at least 8 characters.'
           : 'You currently log in with an OTP. Set a password to also log in with your email and password.'}
       </p>
 
@@ -81,6 +91,12 @@ export default function PasswordTab() {
           </button>
         </div>
       </form>
+
+      {hasPassword && (
+        <p className="panel-sub" style={{ marginTop: 20 }}>
+          Forgot your current password? Log out and use "Forgot password" on the login page.
+        </p>
+      )}
     </div>
   )
 }

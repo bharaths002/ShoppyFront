@@ -71,8 +71,10 @@ export default function Profile() {
 
       <nav className="profile-tabs">
         <NavLink to="details">Details</NavLink>
-        <NavLink to="password">Password</NavLink>
+        <NavLink to="orders">Orders</NavLink>
         <NavLink to="addresses">Addresses</NavLink>
+        <NavLink to="reviews">My reviews</NavLink>
+        <NavLink to="password">Password</NavLink>
         <NavLink to="seller">Sell on Shoppy</NavLink>
       </nav>
 

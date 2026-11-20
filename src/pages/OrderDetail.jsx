@@ -72,7 +72,7 @@ export default function OrderDetail() {
       <section className="page-message">
         <h2>Order not found</h2>
         <p>We couldn't find that order on your account.</p>
-        <Link to="/orders" className="shop-button">
+        <Link to="/profile/orders" className="shop-button">
           Back to orders
         </Link>
       </section>
@@ -102,7 +102,7 @@ export default function OrderDetail() {
 
   return (
     <section className="order-page">
-      <Link to="/orders" className="back-link">
+      <Link to="/profile/orders" className="back-link">
         ← All orders
       </Link>
 
@@ -136,11 +136,22 @@ export default function OrderDetail() {
             {order.items.map((item) => (
               <li key={item.id}>
                 <div>
-                  <strong>{item.product_name}</strong>
+                  {item.product_slug ? (
+                    <Link to={`/products/${item.product_slug}`}>
+                      <strong>{item.product_name}</strong>
+                    </Link>
+                  ) : (
+                    <strong>{item.product_name}</strong>
+                  )}
                   {item.variant_details && <p className="muted">{item.variant_details}</p>}
                   <p className="muted">
                     {formatPrice(item.unit_price)} × {item.quantity}
                   </p>
+                  {(item.status === 'delivered' || order.status === 'delivered') && item.product_slug && (
+                    <Link to={`/products/${item.product_slug}#reviews`} className="forgot-link" style={{ fontSize: 13 }}>
+                      Write a review
+                    </Link>
+                  )}
                 </div>
                 <strong>{formatPrice(item.line_total)}</strong>
               </li>

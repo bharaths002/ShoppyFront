@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { api } from '../api/client'
+import Reviews from '../components/Reviews'
 import { useCart } from '../context/CartContext'
 import { formatPrice } from '../utils/format'
 import './ProductDetail.css'
@@ -14,6 +15,7 @@ function variantLabel(v) {
 
 export default function ProductDetail() {
   const { slug } = useParams()
+  const location = useLocation()
   const { addItem } = useCart()
 
   const [product, setProduct] = useState(null)
@@ -50,6 +52,13 @@ export default function ProductDetail() {
   }, [slug])
 
   const variants = useMemo(() => (product?.variants || []).filter((v) => v.is_active), [product])
+
+  // /products/<slug>#reviews (from an order or "My reviews") jumps straight to the reviews
+  useEffect(() => {
+    if (product && location.hash === '#reviews') {
+      document.querySelector('#reviews')?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [product, location.hash])
 
   if (notFound) {
     return (
@@ -209,6 +218,8 @@ export default function ProductDetail() {
           )}
         </div>
       </div>
+
+      <Reviews productSlug={product.slug} />
     </section>
   )
 }

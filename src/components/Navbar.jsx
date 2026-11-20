@@ -31,6 +31,7 @@ export default function Navbar() {
       <div className="nav-actions">
         {isLoggedIn ? (
           <>
+            <Link to="/profile/orders">Orders</Link>
             {isVendorApproved && <Link to="/vendor">Vendor dashboard</Link>}
             <button className="link-button" onClick={handleLogout}>
               Logout

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api/client'
-import StatusBadge from '../components/StatusBadge'
+import StatusBadge from './StatusBadge'
 import { PAYMENT_METHOD_LABELS, capitalize, formatDate, formatPrice } from '../utils/format'
-import './Orders.css'
+import '../pages/Orders.css'
 
-export default function Orders() {
+// The customer's order history. Used inside the profile page (Orders tab).
+export default function OrderList() {
   const [orders, setOrders] = useState(null)
   const [error, setError] = useState('')
 
@@ -17,9 +18,7 @@ export default function Orders() {
   }, [])
 
   return (
-    <section className="order-page">
-      <h1>My orders</h1>
-
+    <>
       {error && <p className="form-error">{error}</p>}
       {!orders && !error && <p className="muted">Loading your orders...</p>}
 
@@ -53,6 +52,6 @@ export default function Orders() {
           ))}
         </div>
       )}
-    </section>
+    </>
   )
 }
